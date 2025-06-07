@@ -6,7 +6,7 @@ import email
 import re
 
 EMAIL = "jstnlos@gmail.com"
-WACHTWOORD = "c&NmAl:z7DhQ6a63"
+WACHTWOORD = "c&NmA!z7Dh@Ga63"
 ONTVANGER_EMAIL = "justinlos123@gmail.com"
 IMAP_WACHTWOORD = "dtlz kxpt vpqj lxik"  # Gmail app-wachtwoord
 
