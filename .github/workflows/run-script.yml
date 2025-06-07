@@ -1,8 +1,22 @@
-name: Run Airmiles Script Every Hour
+name: Run Airmiles Script at specific hours
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Draait elk uur (UTC-tijd)
+    - cron: '30 6 * * *'   # 08:30 NL tijd
+    - cron: '30 7 * * *'   # 09:30 NL tijd
+    - cron: '30 8 * * *'   # 10:30 NL tijd
+    - cron: '30 9 * * *'   # 11:30 NL tijd
+    - cron: '30 10 * * *'  # 12:30 NL tijd
+    - cron: '30 11 * * *'  # 13:30 NL tijd
+    - cron: '30 12 * * *'  # 14:30 NL tijd
+    - cron: '30 13 * * *'  # 15:30 NL tijd
+    - cron: '30 14 * * *'  # 16:30 NL tijd
+    - cron: '30 15 * * *'  # 17:30 NL tijd
+    - cron: '30 16 * * *'  # 18:30 NL tijd
+    - cron: '30 17 * * *'  # 19:30 NL tijd
+    - cron: '30 18 * * *'  # 20:30 NL tijd
+    - cron: '30 20 * * *'  # 22:30 NL tijd
+  workflow_dispatch:       # Handmatig starten via GitHub
 
 jobs:
   run-script:
