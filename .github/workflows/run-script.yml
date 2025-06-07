@@ -1,0 +1,27 @@
+name: Run Airmiles Script Every Hour
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Elke 60 minuten
+  workflow_dispatch:     # Handmatig starten via GitHub
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          playwright install
+
+      - name: Run script
+        run: python airmiles_script.py
