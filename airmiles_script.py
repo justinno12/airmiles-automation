@@ -55,32 +55,32 @@ def haal_verificatiecode_op():
         return None
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)  # Aangepast: headless modus
+    browser = p.chromium.launch(headless=True)
     context = browser.new_context()
     page = context.new_page()
 
-page.goto("https://www.airmiles.nl/")
-page.wait_for_timeout(3000)
+    page.goto("https://www.airmiles.nl/")
+    page.wait_for_timeout(3000)
 
-try:
-    print("🔍 Zoeken naar cookiebanner...")
-    cookie_selectors = [
-        "button:has-text('Accepteren')",
-        "div[role='button'] >> text=Accepteren",
-        "button[aria-label='Accepteren']"
-    ]
-    for selector in cookie_selectors:
-        try:
-            page.locator(selector).first.scroll_into_view_if_needed()
-            page.locator(selector).first.click(timeout=3000)
-            print(f"✅ Cookiebanner weggeklikt met selector: {selector}")
-            break
-        except:
-            continue
-    else:
-        print("🟡 Geen werkende cookiebanner gevonden.")
-except:
-    print("⚠️ Fout bij wegklikken cookiebanner")
+    try:
+        print("🔍 Zoeken naar cookiebanner...")
+        cookie_selectors = [
+            "button:has-text('Accepteren')",
+            "div[role='button'] >> text=Accepteren",
+            "button[aria-label='Accepteren']"
+        ]
+        for selector in cookie_selectors:
+            try:
+                page.locator(selector).first.scroll_into_view_if_needed()
+                page.locator(selector).first.click(timeout=3000)
+                print(f"✅ Cookiebanner weggeklikt met selector: {selector}")
+                break
+            except:
+                continue
+        else:
+            print("🟡 Geen werkende cookiebanner gevonden.")
+    except:
+        print("⚠️ Fout bij wegklikken cookiebanner")
 
     page.get_by_role("button", name="Inloggen").first.click()
     page.wait_for_timeout(1500)
