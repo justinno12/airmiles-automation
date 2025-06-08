@@ -59,15 +59,28 @@ with sync_playwright() as p:
     context = browser.new_context()
     page = context.new_page()
 
-    page.goto("https://www.airmiles.nl/")
-    page.wait_for_timeout(2000)
+page.goto("https://www.airmiles.nl/")
+page.wait_for_timeout(3000)
 
-    try:
-        cookie_knop = page.locator("div[role='button'] span", has_text="Accepteren")
-        cookie_knop.first.click(timeout=7000)
-        print("✅ Cookie banner geaccepteerd")
-    except:
-        print("🟡 Geen cookie banner gevonden of al geaccepteerd")
+try:
+    print("🔍 Zoeken naar cookiebanner...")
+    cookie_selectors = [
+        "button:has-text('Accepteren')",
+        "div[role='button'] >> text=Accepteren",
+        "button[aria-label='Accepteren']"
+    ]
+    for selector in cookie_selectors:
+        try:
+            page.locator(selector).first.scroll_into_view_if_needed()
+            page.locator(selector).first.click(timeout=3000)
+            print(f"✅ Cookiebanner weggeklikt met selector: {selector}")
+            break
+        except:
+            continue
+    else:
+        print("🟡 Geen werkende cookiebanner gevonden.")
+except:
+    print("⚠️ Fout bij wegklikken cookiebanner")
 
     page.get_by_role("button", name="Inloggen").first.click()
     page.wait_for_timeout(1500)
@@ -92,8 +105,8 @@ with sync_playwright() as p:
         browser.close()
         exit()
 
-    if int(punten.strip()) >= 100:
-        print("🎯 Je hebt 100 punten of meer. Tijd voor overdracht!")
+    if int(punten.strip()) >= 50:
+        print("🎯 Je hebt 50 punten of meer. Tijd voor overdracht!")
 
         page.goto("https://www.airmiles.nl/mijn/zelf-regelen/overboeken/")
         print("🌐 Overdrachtformulier geopend.")
@@ -149,7 +162,7 @@ with sync_playwright() as p:
         else:
             print("❌ Geen verificatiecode gevonden in mailbox.")
     else:
-        print("ℹ️ Je hebt minder dan 100 punten. Geen actie ondernomen.")
+        print("ℹ️ Je hebt minder dan 50 punten. Geen actie ondernomen.")
 
     print("🟦 Script automatisch afgesloten.")
     browser.close()
