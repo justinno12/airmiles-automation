@@ -1,8 +1,8 @@
-name: Run Airmiles Script every 30 minutes (08:00–22:30 NL tijd)
+name: Run Airmiles Script every 15 minutes (08:00–22:30 NL tijd)
 
 on:
   schedule:
-    - cron: '0,30 6-20 * * *'  # Elke 30 minuten van 06:00–20:30 UTC (08:00–22:30 NL)
+    - cron: '0,15,30,45 6-20 * * *'  # Elke 15 minuten van 06:00–20:45 UTC (08:00–22:45 NL)
   workflow_dispatch:
 
 jobs:
