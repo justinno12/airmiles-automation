@@ -3,11 +3,13 @@ import time
 import imaplib
 import email
 import re
+import os  
 
-EMAIL = "jstnlos@gmail.com"
-WACHTWOORD = "c&NmA!z7Dh@Ga63"
-ONTVANGER_EMAIL = "justinlos123@gmail.com"
-IMAP_WACHTWOORD = "dtlz kxpt vpqj lxik"  # Gmail app-wachtwoord
+# ✅ Veilige environment variables vanuit Railway
+EMAIL = os.getenv("EMAIL")
+WACHTWOORD = os.getenv("WACHTWOORD")
+ONTVANGER_EMAIL = os.getenv("ONTVANGER_EMAIL")
+IMAP_WACHTWOORD = os.getenv("IMAP_WACHTWOORD")
 
 def haal_verificatiecode_op():
     try:
