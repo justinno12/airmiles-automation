@@ -154,8 +154,8 @@ with sync_playwright() as p:
         except:
             print("❌ Kon 'Verifieer via e-mail' niet klikken.")
 
-        print("⏳ Wacht 60 seconden tot de e-mail is aangekomen...")
-        time.sleep(60)
+        print("⏳ Wacht 40 seconden tot de e-mail is aangekomen...")
+        time.sleep(40)
 
         print("📬 Verificatiecode ophalen uit [Gmail]/Belangrijk...")
         code = haal_verificatiecode_op()
