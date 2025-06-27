@@ -3,11 +3,21 @@ import time
 import imaplib
 import email
 import re
+import os
 
-EMAIL = "jstnlos@gmail.com"
-WACHTWOORD = "c&NmA!z7Dh@Ga63"
-ONTVANGER_EMAIL = "justinlos123@gmail.com"
-IMAP_WACHTWOORD = "dtlz kxpt vpqj lxik"  # Gmail app-wachtwoord
+print("🚀 Script gestart via Railway")
+
+# Environment variables ophalen
+EMAIL = os.getenv("EMAIL")
+WACHTWOORD = os.getenv("WACHTWOORD")
+ONTVANGER_EMAIL = os.getenv("ONTVANGER_EMAIL")
+IMAP_WACHTWOORD = os.getenv("IMAP_WACHTWOORD")
+
+# Debug output naar log
+print(f"📨 EMAIL geladen: {'✅' if EMAIL else '❌ NIET gevonden'}")
+print(f"🔑 WACHTWOORD geladen: {'✅' if WACHTWOORD else '❌ NIET gevonden'}")
+print(f"📤 ONTVANGER_EMAIL geladen: {'✅' if ONTVANGER_EMAIL else '❌ NIET gevonden'}")
+print(f"📫 IMAP_WACHTWOORD geladen: {'✅' if IMAP_WACHTWOORD else '❌ NIET gevonden'}")
 
 def haal_verificatiecode_op():
     try:
